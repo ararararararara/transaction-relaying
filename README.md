@@ -74,7 +74,7 @@ const isValidTxForPool = (tx, aTtransactionPool) => {
 };
  
  ```
- ## :heavy_exclamation_mark: 트랜잭션 풀 업데이트
+ ## :arrow_forward: 트랜잭션 풀 업데이트
   ```
  const updateTransactionPool = (unspentTxOuts) => {
     const invalidTxs = [];

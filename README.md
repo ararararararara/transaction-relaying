@@ -1,29 +1,29 @@
-# :love_letter:transaction-relaying
+# :love_letter: transaction-relaying
 
-## :arrow_forward:노드가 통신할 때 공유하는 데이터 종류
+## :arrow_forward: 노드가 통신할 때 공유하는 데이터 종류
  1. 블록체인에 포함된 블록 및 트랜잭션
  2. 블록체인에 아직 포함되지 않은 거래(미확인 거래)
  
-## :arrow_forward:미확인 거래
+## :arrow_forward: 미확인 거래
  블록체인에 트랜잭션을 포함하기 위해 블록을 직접 채굴할 필요 없이 
  어떤 주소로 코인을 보내고 싶을 때 트랜잭션을 네트워크에 브로드캐스트 하고 일부 노드를 블록체인으로 마이닝 할 수 있게 한다.
  
-## :arrow_forward:트랜잭션 풀
+## :arrow_forward: 트랜잭션 풀
  
- ### 미확인거래를 트랜잭션 폴에 저장
+ ### :heavy_exclamation_mark: 미확인거래를 트랜잭션 폴에 저장
  
  ```
  let transactionPool = [];
  ```
  
- ### post로 거래 전송
+ ### :heavy_exclamation_mark: post로 거래 전송
  
  ```
  app.post('/sendTransaction', (req, res) => {
         ...
     })
  ```
- ### 트랜잭션 생성
+ ### :heavy_exclamation_mark: 트랜잭션 생성
  
  ```
  const sendTransaction = (address, amount) => {
@@ -32,7 +32,7 @@
     return tx;
 };
  ```
- ## :mega:브로드캐스팅
+ ## :mega: 브로드캐스팅
   ```
  var MessageType;
 (function (MessageType) {
@@ -44,7 +44,7 @@
 })(MessageType || (MessageType = {}));
  ```
 
-## :arrow_forward:수신된 미확인 거래 확인
+## :arrow_forward: 수신된 미확인 거래 확인
 
 ```
 const isValidTxForPool = (tx, aTtransactionPool) => {
@@ -64,7 +64,7 @@ const isValidTxForPool = (tx, aTtransactionPool) => {
 };
  ```
  
-## :arrow_forward:트랜잭션 풀에서 블록체인으로
+## :arrow_forward: 트랜잭션 풀에서 블록체인으로
  
  ```
  const generateNextBlock = () => {
@@ -74,7 +74,7 @@ const isValidTxForPool = (tx, aTtransactionPool) => {
 };
  
  ```
- ## :heavy_exclamation_mark:트랜잭션 풀 업데이트
+ ## :heavy_exclamation_mark: 트랜잭션 풀 업데이트
   ```
  const updateTransactionPool = (unspentTxOuts) => {
     const invalidTxs = [];

@@ -1,4 +1,4 @@
-# transaction-relaying
+# :love_letter:transaction-relaying
 
 ## 노드가 통신할 때 공유하는 데이터 종류
  1. 블록체인에 포함된 블록 및 트랜잭션
@@ -32,7 +32,7 @@
     return tx;
 };
  ```
- ## 브로드캐스팅
+ ## :mega:브로드캐스팅
   ```
  var MessageType;
 (function (MessageType) {
@@ -63,3 +63,34 @@ const isValidTxForPool = (tx, aTtransactionPool) => {
     return true;
 };
  ```
+ 
+## 트랜잭션 풀에서 블록체인으로
+ 
+ ```
+ const generateNextBlock = () => {
+    const coinbaseTx = getCoinbaseTransaction(getPublicFromWallet(), getLatestBlock().index + 1);
+    const blockData = [coinbaseTx].concat(getTransactionPool());
+    return generateRawNextBlock(blockData);
+};
+ 
+ ```
+ ## :heavy_exclamation_mark:트랜잭션 풀 업데이트
+  ```
+ const updateTransactionPool = (unspentTxOuts) => {
+    const invalidTxs = [];
+    for (const tx of transactionPool) {
+        for (const txIn of tx.txIns) {
+            if (!hasTxIn(txIn, unspentTxOuts)) {
+                invalidTxs.push(tx);
+                break;
+            }
+        }
+    }
+    if (invalidTxs.length > 0) {
+        console.log('removing the following transactions from txPool: %s', JSON.stringify(invalidTxs));
+        transactionPool = _.without(transactionPool, ...invalidTxs);
+    }
+};
+ ```
+
+
